@@ -1,0 +1,46 @@
+body {
+	margin: 0px;
+	font-size: 1.1em;
+}
+
+footer, nav {
+	text-align: center;
+}
+
+nav ul li {
+	display: inline;
+    margin-right: 10px;
+}
+
+a {
+	color: maroon;
+	font-weight: bold;
+}
+a:hover {
+	color: rgb(221, 39, 100)
+}
+
+h1 {
+	margin: 30px;
+	color: Maroon;
+	text-align: center;
+}
+
+#food-picture {
+	border: 5px solid maroon;
+	background-image: url("img/polygon-triangles-geometric-gradient-wallpaper-preview.jpg");
+	background-color: LightBrown;
+	background-size: 100%;
+	height: 600px;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
+#banner-text {
+	font-weight: bold;
+	padding: 200px 100px;
+	text-align: center;
+	color: mistyrose;
+}
