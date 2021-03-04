@@ -48,7 +48,6 @@
 
 			function memeInsert(){
 				var filepath = document.getElementById("input").value;
-				document.getElementById("crewOrImp").innerHTML = "<img src = \"" + filepath + "\" alt = \"meme\" >";
 
 				var xhr = new XMLHttpRequest();			
 				
@@ -71,7 +70,7 @@
 
 				xhr.onreadystatechange = function() {
         			if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-            			document.getElementById("html").innerHTML = this.responseText;	
+            			document.getElementById("html").innerHTML = "<img src ='" + this.responseText + "' alt = 'Crew Or Imposter' width = '300' height = '300'>";	
        				}
 				}
 				xhr.send();

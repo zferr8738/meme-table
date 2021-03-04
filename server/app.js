@@ -36,8 +36,9 @@ app.get('/memeInsert', (request, response)  => {
 })
 app.get('/resultToHTML', async (request, response)  => {
     console.log('Starting...')
-    var memeHTML = await dao.getAllRatings();
     console.log('Getting there...')
+    var memeHTML = await dao.getAllRatings();
+    
     response.status(200).send(memeHTML);
 })
 app.listen(port, () => {
