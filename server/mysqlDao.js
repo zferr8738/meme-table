@@ -19,7 +19,7 @@ con.connect(function(err) {
 });
 
 function resultToHtml(URLmeme, spanId){
-  return "<span id=\"span-" + spanId + "\">URL: " + URLmeme + "</span>";
+  return URLmeme;
 }
 module.exports = {
   
