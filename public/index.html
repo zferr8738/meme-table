@@ -16,7 +16,11 @@
 			<br></br>
 			<input id = "input" type="text"></input>
 			<button type="button" onclick="memeInsert()">Send a meme!</button>
-			<button type="button" onclick="resultToHTML()">HTML stuff</button>
+			<button type="button" onclick="resultToHTML()">Print meme</button>
+			<form action="/profile" method="post" enctype="multipart/form-data">
+				<input type="file" name="meme" />
+				<button type="button" onclick="submitPic()">Submit picture</button>
+			  </form>
 		</div>
 		<div id = "html">
 			<p>HTML stuff should go here.</p>
@@ -29,7 +33,19 @@
 
 
 		<script type="text/javascript"> 
-			
+			function submitPic(){
+				var xhr = new XMLHttpRequest();			
+				
+				xhr.open("POST","http://localhost:3000/profile", true);
+				xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+				xhr.onreadystatechange = function() {
+        			if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+       				}
+				};
+				
+				xhr.send();
+			}
 			function crewOrImp(){
 				var xhr = new XMLHttpRequest();			
 				
@@ -70,7 +86,7 @@
 
 				xhr.onreadystatechange = function() {
         			if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-            			document.getElementById("html").innerHTML = "<img src ='" + this.responseText + "' alt = 'Crew Or Imposter' width = '300' height = '300'>";	
+            			document.getElementById("html").innerHTML = "<img src ='" + this.responseText + "' alt = 'Meme' width = '300' height = '300'>";	
        				}
 				}
 				xhr.send();
