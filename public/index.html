@@ -14,11 +14,18 @@
 		<div style = "text-align: center;">
 			<!--input id = "input" type="text"></input>
 			<button type="button" onclick="memeInsert()">Send a meme!</button>
+<<<<<<< HEAD
 			<button type="button" onclick="resultToHTML()">Print meme</button-->
 			<br/>
 			<form action="/profile" method="post" enctype="multipart/form-data">
 				<input type="file" class = "button" name="meme" />
 				<input type="submit" class = "button" value="Upload Meme"/>
+=======
+			<button type="button" onclick="resultToHTML()">Print meme</button>
+			<form action="/profile" method="post" enctype="multipart/form-data">
+				<input type="file" name="meme" />
+				<button type="button" onclick="submitPic()">Submit picture</button>
+>>>>>>> 2ce846f580915f8483e9a88275fa67fbf6e0d02c
 			  </form>
 		</div>
 		<div id = "html" style = "text-align: center;">
@@ -29,6 +36,37 @@
 		
 
 		<script type="text/javascript"> 
+<<<<<<< HEAD
+=======
+			function submitPic(){
+				var xhr = new XMLHttpRequest();			
+				
+				xhr.open("POST","http://localhost:3000/profile", true);
+				xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+				xhr.onreadystatechange = function() {
+        			if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+       				}
+				};
+				
+				xhr.send();
+			}
+			function crewOrImp(){
+				var xhr = new XMLHttpRequest();			
+				
+				xhr.open("GET","http://localhost:3000/crewOrImp", true);
+				xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+				xhr.onreadystatechange = function() {
+        			if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+            			document.getElementById("crewOrImp").innerHTML = this.responseText;
+						document.getElementById("crewOrImp").style.backgroundColor = "blue";
+       				}
+				};
+				
+				xhr.send();
+   			}
+>>>>>>> 2ce846f580915f8483e9a88275fa67fbf6e0d02c
 
 			function memeInsert(){
 				var filepath = document.getElementById("input").value;
@@ -54,7 +92,11 @@
 
 				xhr.onreadystatechange = function() {
         			if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+<<<<<<< HEAD
             			document.getElementById("html").innerHTML = "<img src ='" + this.response + "' alt = 'Meme' width = '300' height = '300'>";	
+=======
+            			document.getElementById("html").innerHTML = "<img src ='" + this.responseText + "' alt = 'Meme' width = '300' height = '300'>";	
+>>>>>>> 2ce846f580915f8483e9a88275fa67fbf6e0d02c
        				}
 				}
 				xhr.send();

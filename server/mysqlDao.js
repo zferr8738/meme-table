@@ -18,6 +18,12 @@ con.connect(function(err) {
   });
 });
 
+<<<<<<< HEAD
+=======
+function resultToHtml(URLmeme, spanId){
+  return URLmeme;
+}
+>>>>>>> 2ce846f580915f8483e9a88275fa67fbf6e0d02c
 module.exports = {
   
    getAllRatings: async function () {
