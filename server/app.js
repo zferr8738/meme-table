@@ -6,11 +6,7 @@ const dao = require('./mysqlDao.js');
 var multer  = require('multer');
 const { insertMeme } = require('./mysqlDao.js');
 var upload = multer({ dest: 'uploads/' })
-<<<<<<< HEAD
 var count = 0;
-=======
-
->>>>>>> 2ce846f580915f8483e9a88275fa67fbf6e0d02c
 const app = express();
 const port = 3000;
 
@@ -26,12 +22,8 @@ app.get('/', (req, res) => {
     });
 });
 app.get('/memeInsert', (request, response)  => {
-<<<<<<< HEAD
     count++;
     dao.insertMeme(count, request.query.filepath, 0);
-=======
-    dao.insertMeme(0, request.query.filepath, 0);
->>>>>>> 2ce846f580915f8483e9a88275fa67fbf6e0d02c
     response.status(200).send({});
 })
 app.get('/resultToHTML', async (request, response)  => {
@@ -42,7 +34,6 @@ app.get('/resultToHTML', async (request, response)  => {
     response.status(200).send(memeHTML);
 })
 app.post('/profile', upload.single('meme'), function (req, res, next) {
-<<<<<<< HEAD
     count++;
     dao.insertMeme(count, req.file.filename, 1);
     res.status(200).send({});
@@ -51,28 +42,6 @@ app.post('/profile', upload.single('meme'), function (req, res, next) {
     var imgFile = await dao.getAllRatings();
     console.log("Sending file: " + imgFile);
     response.status(200).sendFile( __dirname + "/uploads/" + imgFile);
-=======
-    var sql = "SELECT COUNT(*) AS total FROM memeTable";
-    var query = con.query(sql, function(err, result) {
-        insertMeme(result[0].total + 1, req.file.filename);
-        console.log(req.file);
-    })
-
-
-    response.status(200).send({});
-  })
-  app.post('/photos/upload', upload.array('photos', 12), function (req, res, next) {
-    // req.files is array of `photos` files
-  })
-  
-  var cpUpload = upload.fields([{ name: 'meme', maxCount: 1 }, { name: 'gallery', maxCount: 8 }])
-  app.post('/cool-profile', cpUpload, function (req, res, next) {
-    // req.files is an object (String -> Array) where fieldname is the key, and the value is array of files
-    //
-    // e.g.
-    //  req.files['avatar'][0] -> File
-    //  req.files['gallery'] -> Array
->>>>>>> 2ce846f580915f8483e9a88275fa67fbf6e0d02c
   })
   /*
   Disk storage for Multer (VERY IMPORTANT FOR EVERYTHING TO WORK CORRECTLY!)0
