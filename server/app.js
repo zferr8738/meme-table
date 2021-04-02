@@ -3,8 +3,10 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
 const dao = require('./mysqlDao.js');
-//const dao = require('./sqliteDao.js');
-
+var multer  = require('multer');
+const { insertMeme } = require('./mysqlDao.js');
+var upload = multer({ dest: 'uploads/' })
+var count = 0;
 const app = express();
 const port = 3000;
 
@@ -19,20 +21,10 @@ app.get('/', (req, res) => {
         root: path.resolve('../public')
     });
 });
-
-app.get('/crewOrImp', (request, response)  => {
-    //flip a coin, decide which is better, crew or imposter
-    var result = "https://static.wikia.nocookie.net/among-us-wiki/images/3/31/Red.png";
-    var rand = Math.random();
-    if(rand < .5)
-    {
-        result = "https://static.wikia.nocookie.net/among-us-wiki/images/9/92/Yellow.png";
-    }
-    response.status(200).send("<img src ='" + result + "' alt = 'Crew Or Imposter' width = '300' height = '300'>");
-})
 app.get('/memeInsert', (request, response)  => {
-    dao.insertMeme(0, request.query.filepath, 0);
-    response.status(200).send({} );
+    count++;
+    dao.insertMeme(count, request.query.filepath, 0);
+    response.status(200).send({});
 })
 app.get('/resultToHTML', async (request, response)  => {
     console.log('Starting...')
@@ -41,6 +33,32 @@ app.get('/resultToHTML', async (request, response)  => {
     
     response.status(200).send(memeHTML);
 })
+app.post('/profile', upload.single('meme'), function (req, res, next) {
+    count++;
+    dao.insertMeme(count, req.file.filename, 1);
+    res.status(200).send({});
+  })
+  app.get('/getMeme', async (request, response)  => {
+    var imgFile = await dao.getAllRatings();
+    console.log("Sending file: " + imgFile);
+    response.status(200).sendFile( __dirname + "/uploads/" + imgFile);
+  })
+  /*
+  Disk storage for Multer (VERY IMPORTANT FOR EVERYTHING TO WORK CORRECTLY!)0
+  /!\KEEP THIS THE SAME/!\
+  ==========================================================================
+  */
+  var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads')
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now())
+    }
+  })
+   
+  var upload = multer({ storage: storage })
+
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });

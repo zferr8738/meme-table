@@ -12,39 +12,23 @@
 		
 		<h1>Meme Generator</h1>
 		<div style = "text-align: center;">
-			<button type="button" onclick="crewOrImp()">So, which is it?</button>
-			<br></br>
-			<input id = "input" type="text"></input>
+			<!--input id = "input" type="text"></input>
 			<button type="button" onclick="memeInsert()">Send a meme!</button>
-			<button type="button" onclick="resultToHTML()">HTML stuff</button>
+			<button type="button" onclick="resultToHTML()">Print meme</button-->
+			<br/>
+			<form action="/profile" method="post" enctype="multipart/form-data">
+				<input type="file" class = "button" name="meme" />
+				<input type="submit" class = "button" value="Upload Meme"/>
+			  </form>
 		</div>
-		<div id = "html">
-			<p>HTML stuff should go here.</p>
+		<div id = "html" style = "text-align: center;">
+			<img src = "/getMeme">
 		</div>
 		<br></br>
-		<div id="crewOrImp" style = "text-align: center;"> 
-			Crew or Imposter?
-		</div>
 
-
+		
 
 		<script type="text/javascript"> 
-			
-			function crewOrImp(){
-				var xhr = new XMLHttpRequest();			
-				
-				xhr.open("GET","http://localhost:3000/crewOrImp", true);
-				xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-				xhr.onreadystatechange = function() {
-        			if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-            			document.getElementById("crewOrImp").innerHTML = this.responseText;
-						document.getElementById("crewOrImp").style.backgroundColor = "blue";
-       				}
-				};
-				
-				xhr.send();
-   			}
 
 			function memeInsert(){
 				var filepath = document.getElementById("input").value;
@@ -61,20 +45,20 @@
 				}
 				xhr.send();
    			}
-			function resultToHTML(){
+			/*function resultToHTML(){
 				var xhr = new XMLHttpRequest();		
 				
 				
-				xhr.open("GET","http://localhost:3000/resultToHTML", true);
+				xhr.open("GET","http://localhost:3000/getMeme", true);
 				xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
 				xhr.onreadystatechange = function() {
         			if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-            			document.getElementById("html").innerHTML = "<img src ='" + this.responseText + "' alt = 'Crew Or Imposter' width = '300' height = '300'>";	
+            			document.getElementById("html").innerHTML = "<img src ='" + this.response + "' alt = 'Meme' width = '300' height = '300'>";	
        				}
 				}
 				xhr.send();
-   			}
+   			}*/
 		</script>
 	</body>
 </html>

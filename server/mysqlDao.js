@@ -18,9 +18,6 @@ con.connect(function(err) {
   });
 });
 
-function resultToHtml(URLmeme, spanId){
-  return "<span id=\"span-" + spanId + "\">URL: " + URLmeme + "</span>";
-}
 module.exports = {
   
    getAllRatings: async function () {
@@ -29,9 +26,9 @@ module.exports = {
     function (err, result, fields) {
         if (err) return reject(err);
 
-        var html = " ";
+        var html = "";
         var n = 0;
-        html += resultToHtml(result[n].URLmeme, n);
+        html += result[n].URLmeme;
         
 
         console.log("Result inside memeTable: " + html);
