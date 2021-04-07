@@ -22,12 +22,14 @@ module.exports = {
   
    getAllRatings: async function () {
     return new Promise( function(resolve, reject) {
-    con.query("SELECT URLmeme FROM memeTable;", 
+    con.query("SELECT COUNT(*) num, URLmeme FROM memeTable GROUP BY URLmeme;", 
     function (err, result, fields) {
         if (err) return reject(err);
 
         var html = "";
-        var n = 0;
+        var length = result.length;
+        
+        var n = Math.floor((Math.random() * length));
         html += result[n].URLmeme;
         
 
